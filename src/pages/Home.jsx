@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import Quiz from "./Quiz";
-import QuizOptions from "../components/quiz/QuizOptions";
+import React, { useEffect, useState } from 'react'
+import { fetchQuiz } from '../api/quizApi';
 
-import { fetchQuiz } from "../api/quizApi";
+import Quiz from "../pages/Quiz";
+import QuizOptions from "../components/QuizOptions";
 
 const Home = () => {
+
     const [quizData, setQuizData] = useState(null);
 
     const startQuiz = async (options) => {
@@ -14,22 +15,27 @@ const Home = () => {
             options.type,
             options.amount
         );
-        const formattedData = data.map((q) => ({
+
+        const formatData = data.map((q) => ({
             ...q,
             answers: [...q.incorrect_answers, q.correct_answer].sort(),
         }));
-        setQuizData(formattedData);
-    };
+
+        setQuizData(formatData);
+    }
 
     return (
-        <div className="w-full flex-1 flex items-center justify-center">
+        <div className='w-full flex-1 flex items-center justify-center'>
             {!quizData ? (
                 <QuizOptions startQuiz={startQuiz} />
-            ) : (
-                <Quiz questions={quizData} />
-            )}
+            )
+                :
+                (
+                    <Quiz questions={quizData} />
+                )
+            }
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home

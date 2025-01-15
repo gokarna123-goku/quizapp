@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 
 const QuizTimer = ({ difficulty, questionCount, onTimeUp }) => {
-    // Determine the time limit based on difficulty and question count
+
+    // Determine the time limit based on the difficulty and question count
+
     const getTimeLimit = () => {
         const baseTimes = {
             easy: 2 * 60 + 15, // 2 minutes 15 seconds
@@ -23,7 +25,8 @@ const QuizTimer = ({ difficulty, questionCount, onTimeUp }) => {
 
     const [timeLeft, setTimeLeft] = useState(getTimeLimit());
 
-    // Update the time left every second
+    // update the time left seconds
+
     useEffect(() => {
         if (timeLeft === 0) {
             onTimeUp();
@@ -33,7 +36,7 @@ const QuizTimer = ({ difficulty, questionCount, onTimeUp }) => {
         return () => clearTimeout(timer);
     }, [timeLeft]);
 
-    // Format the time left
+    // format the time left
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
@@ -41,10 +44,14 @@ const QuizTimer = ({ difficulty, questionCount, onTimeUp }) => {
     };
 
     return (
-        <div className="text-neutral-100">
-            <p className="font-medium text-lg">Time Left: <span className="font-semibold">{formatTime(timeLeft)}</span></p>
-        </div>
-    );
-};
+        <div className='text-neutral-100 font-medium text-lg'>
+            <p className="">
+                Time Left: {" "}
+                <span className="font-semibold">{formatTime(timeLeft)}</span>
+            </p>
 
-export default QuizTimer;
+        </div>
+    )
+}
+
+export default QuizTimer
