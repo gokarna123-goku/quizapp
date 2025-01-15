@@ -55,13 +55,16 @@ const QuizResult = ({
                         {questions.map((q, i) => (
                             <div key={i} className="w-full p-4 space-y-2 rounded-xl bg-neutral-700/5 border border-neutral-100/30">
                                 <p>
-                                    <span className="font-bold">Q{i + 1}:</span> {q.question}
+                                    <span className="font-bold">Q{i + 1}:</span> <span dangerouslySetInnerHTML={{ __html: q.question }}>
+                                    </span>
                                 </p>
                                 <p>
-                                    <span className="font-bold">Your Answer:</span> {selectedAnswers[i] || "Not Attempted"}
+                                    <span className="font-bold">Your Answer:</span> <span dangerouslySetInnerHTML={{ __html: selectedAnswers[i] || "Not Attempted" }}>
+                                    </span>
                                 </p>
                                 <p>
-                                    <span className="font-bold">Correct Answer:</span> {q.correct_answer}
+                                    <span className="font-bold">Correct Answer:</span> <span dangerouslySetInnerHTML={{ __html: q.correct_answer }}>
+                                    </span>
                                 </p>
                             </div>
                         ))}

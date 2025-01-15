@@ -4,7 +4,8 @@ const QuizQuestion = ({ question, index, handleAnswer, selectedAnswer }) => {
     return (
         <div className="p-4 text-neutral-100">
             <h2 className="text-lg font-bold mb-4">
-                Q{index + 1}: {question.question}
+                Q{index + 1}: <span dangerouslySetInnerHTML={{ __html: question.question }}>
+                </span>
             </h2>
             {question.answers.map((answer, i) => (
                 <label
@@ -20,7 +21,7 @@ const QuizQuestion = ({ question, index, handleAnswer, selectedAnswer }) => {
                         checked={selectedAnswer === answer}
                         onChange={() => handleAnswer(index, answer)}
                     />
-                    <span>{answer}</span>
+                    <span dangerouslySetInnerHTML={{ __html: answer }}></span>
                 </label>
             ))}
         </div>
